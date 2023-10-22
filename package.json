@@ -1,5 +1,5 @@
 {
-  "name": "bedrock-protocol",
+  "name": "@bedrockable/protocol",
   "version": "3.31.0",
   "description": "Minecraft Bedrock Edition protocol library",
   "main": "index.js",
@@ -37,7 +37,8 @@
     "raknet-node": "^0.5.0"
   },
   "devDependencies": {
-    "bedrock-protocol": "file:.",
+    "@types/node": "^20.8.7",
+    "@bedrockable/protocol": "file:.",
     "bedrock-provider": "^2.0.0",
     "leveldb-zlib": "^1.0.1",
     "mocha": "^10.0.0",

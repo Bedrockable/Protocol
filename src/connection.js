@@ -62,7 +62,16 @@ class Connection extends EventEmitter {
     }
   }
 
+  _parsePacketName (name) {
+    return name
+      .replace(/([a-z])([A-Z])/g, '$1_$2')
+      .replace(/\s+/g, '_')
+      .replace(/-+/g, '_')
+      .toLowerCase();
+  }
+
   write (name, params) {
+    name = this._parsePacketName(name)
     this.outLog?.(name, params)
     if (name === 'start_game') this.updateItemPalette(params.itemstates)
     const batch = new Framer(this.compressionAlgorithm, this.compressionLevel, this.compressionThreshold)
@@ -77,6 +86,7 @@ class Connection extends EventEmitter {
   }
 
   queue (name, params) {
+    name = this._parsePacketName(name)
     this.outLog?.('Q <- ', name, params)
     if (name === 'start_game') this.updateItemPalette(params.itemstates)
     const packet = this.serializer.createPacketBuffer({ name, params })
